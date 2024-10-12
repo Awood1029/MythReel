@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./layouts/Sidebar";
 import Home from "./pages/Home";
 import Discover from "./pages/Discover";
 import Creators from "./pages/Creators";
 import Profile from "./pages/Profile";
-import VideoUpload from "./components/VideoUpload";
+import VideoUploadForm from "./components/VideoUploadForm";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { AuthProvider } from "./contexts/AuthContext";
-import backgroundImage from "./images/tmpBackground.png";
+import backgroundImage from "./assets/images/tmpBackground.png";
 
 const AppContainer = styled.div`
 	display: flex;
@@ -56,7 +56,7 @@ function App() {
 							<Route path="/discover" element={<Discover />} />
 							<Route path="/creators" element={<Creators />} />
 							<Route path="/profile" element={<Profile />} />
-							<Route path="/upload" element={<VideoUpload />} />
+							<Route path="/upload" element={<VideoUploadForm />} />
 							<Route path="/login" element={<Login />} />
 							<Route path="/register" element={<Register />} />
 						</Routes>

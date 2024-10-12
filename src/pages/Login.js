@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useAuth } from "../contexts/AuthContext";
 
-const LoginContainer = styled.div`
+const AuthContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
 `;
 
-const LoginForm = styled.form`
+const AuthForm = styled.form`
 	background-color: rgba(255, 255, 255, 0.1);
 	padding: 2rem;
 	border-radius: 8px;
@@ -44,7 +44,7 @@ const ErrorMessage = styled.p`
 `;
 
 function Login() {
-	const [username, setUsername] = useState(""); // Changed to username
+	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
@@ -54,7 +54,7 @@ function Login() {
 		e.preventDefault();
 		setError("");
 		try {
-			await login(username, password); // Passing username instead of email
+			await login(username, password);
 			navigate("/");
 		} catch (error) {
 			setError("Login failed. Please check your credentials.");
@@ -62,15 +62,15 @@ function Login() {
 	};
 
 	return (
-		<LoginContainer>
-			<LoginForm onSubmit={handleSubmit}>
+		<AuthContainer>
+			<AuthForm onSubmit={handleSubmit}>
 				<h2>Login</h2>
 				{error && <ErrorMessage>{error}</ErrorMessage>}
 				<Input
-					type="text" // Changed to text for username
+					type="text"
 					placeholder="Username"
 					value={username}
-					onChange={(e) => setUsername(e.target.value)} // Changed to setUsername
+					onChange={(e) => setUsername(e.target.value)}
 					required
 				/>
 				<Input
@@ -81,8 +81,8 @@ function Login() {
 					required
 				/>
 				<Button type="submit">Log In</Button>
-			</LoginForm>
-		</LoginContainer>
+			</AuthForm>
+		</AuthContainer>
 	);
 }
 

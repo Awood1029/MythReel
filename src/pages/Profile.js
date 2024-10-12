@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { getUserById } from "../services/user";
+import { getUserById } from "../services/userService";
 import VideoGrid from "../components/VideoGrid";
 import { useAuth } from "../contexts/AuthContext";
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { register } from "../services/auth";
+import { register } from "../services/authService";
 import styled from "styled-components";
 
 const RegisterContainer = styled.div`
@@ -11,6 +11,21 @@ const RegisterContainer = styled.div`
 `;
 
 const RegisterForm = styled.form`
+	background-color: rgba(255, 255, 255, 0.1);
+	padding: 2rem;
+	border-radius: 8px;
+	width: 100%;
+	max-width: 400px;
+`;
+
+const AuthContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+`;
+
+const AuthForm = styled.form`
 	background-color: rgba(255, 255, 255, 0.1);
 	padding: 2rem;
 	border-radius: 8px;
@@ -42,6 +57,8 @@ const ErrorMessage = styled.p`
 	color: red;
 	margin-bottom: 1rem;
 `;
+
+// Use these styled components in both Login.js and Register.js
 
 function Register() {
 	const [username, setUsername] = useState("");

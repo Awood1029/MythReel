@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { getCurrentUser, updateUser } from "../services/user";
+import { getCurrentUser, updateUser } from "../services/userService";
 
 const EditProfileContainer = styled.div`
 	padding: 20px;

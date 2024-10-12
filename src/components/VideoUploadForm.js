@@ -1,20 +1,43 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { useAuth } from "../contexts/AuthContext";
-import api from "../services/api";
+import { uploadVideo } from "../services/videoService";
 
-function VideoUpload() {
+const UploadContainer = styled.div`
+	padding: 20px;
+	color: white;
+`;
+
+const UploadForm = styled.form`
+	display: flex;
+	flex-direction: column;
+	max-width: 400px;
+`;
+
+const Input = styled.input`
+	margin-bottom: 10px;
+	padding: 5px;
+`;
+
+const Button = styled.button`
+	padding: 10px;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	cursor: pointer;
+`;
+
+function VideoUploadForm() {
 	const [file, setFile] = useState(null);
-	const [coverImage, setCoverImage] = useState(null); // New state for cover image
+	const [coverImage, setCoverImage] = useState(null);
 	const navigate = useNavigate();
 	const { currentUser } = useAuth();
 
-	// Handle video file selection
 	const handleFileChange = (e) => {
 		setFile(e.target.files[0]);
 	};
 
-	// Handle cover image selection
 	const handleCoverImageChange = (e) => {
 		setCoverImage(e.target.files[0]);
 	};
@@ -23,26 +46,15 @@ function VideoUpload() {
 		e.preventDefault();
 		if (!currentUser) {
 			console.error("No user logged in");
-			// Optionally redirect to login page or show an error message
 			return;
 		}
 		if (!file || !coverImage) {
 			console.error("Both video and cover image must be selected");
-			return; // Ensure both video and cover image are selected
+			return;
 		}
 
-		const formData = new FormData();
-		formData.append("file", file);
-		formData.append("coverImage", coverImage); // Append cover image to form data
-		formData.append("userId", currentUser.id);
-
 		try {
-			const response = await api.post("/videos/upload", formData, {
-				headers: {
-					"Content-Type": "multipart/form-data",
-				},
-			});
-			console.log(response.data);
+			await uploadVideo(file, coverImage, currentUser.id);
 			navigate("/");
 		} catch (error) {
 			console.error("Upload failed:", error);
@@ -50,12 +62,12 @@ function VideoUpload() {
 	};
 
 	return (
-		<div>
+		<UploadContainer>
 			<h2>Upload Video</h2>
-			<form onSubmit={handleUpload}>
+			<UploadForm onSubmit={handleUpload}>
 				<div>
 					<label>Select Video:</label>
-					<input
+					<Input
 						type="file"
 						onChange={handleFileChange}
 						accept="video/*"
@@ -64,17 +76,17 @@ function VideoUpload() {
 				</div>
 				<div>
 					<label>Select Cover Image:</label>
-					<input
+					<Input
 						type="file"
 						onChange={handleCoverImageChange}
 						accept="image/*"
 						required
 					/>
 				</div>
-				<button type="submit">Upload</button>
-			</form>
-		</div>
+				<Button type="submit">Upload</Button>
+			</UploadForm>
+		</UploadContainer>
 	);
 }
 
-export default VideoUpload;
+export default VideoUploadForm;

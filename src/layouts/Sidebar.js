@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../images/logo.png";
+import logo from "../assets/images/logo.png";
 import { useAuth } from "../contexts/AuthContext";
 
 const SidebarContainer = styled.nav`
@@ -56,21 +56,6 @@ const MenuLink = styled(Link)`
 			#094236 100%
 		);
 	}
-
-	&:hover {
-		transform: translateX(5px);
-	}
-`;
-
-const LogoutButton = styled.button`
-	width: 100%;
-	padding: 10px 15px;
-	border: none;
-	border-radius: 28px;
-	background: radial-gradient(150.45% 50% at 50% 50%, #11192a 0%, #1b2131 100%);
-	color: #ffffff;
-	cursor: pointer;
-	transition: all 0.3s ease;
 
 	&:hover {
 		transform: translateX(5px);

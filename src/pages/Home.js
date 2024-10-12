@@ -1,7 +1,51 @@
 import React, { useState, useEffect } from "react";
-import { getVideos } from "../services/video";
-import "../styles/Home.css";
+import styled from "styled-components";
+import { getVideos } from "../services/videoService";
 import VideoModal from "../components/VideoModal";
+
+const HomeContainer = styled.div`
+	padding: 20px;
+`;
+
+const VideoFeed = styled.div`
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 20px;
+`;
+
+const VideoCard = styled.div`
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: transform 0.3s ease;
+
+	&:hover {
+		transform: translateY(-5px);
+	}
+`;
+
+const VideoCover = styled.img`
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+`;
+
+const VideoInfo = styled.div`
+	padding: 10px;
+`;
+
+const VideoTitle = styled.h2`
+	margin: 0;
+	font-size: 1rem;
+	color: white;
+`;
+
+const VideoAuthor = styled.p`
+	margin: 5px 0 0;
+	font-size: 0.8rem;
+	color: #aaa;
+`;
 
 function Home() {
 	const [videos, setVideos] = useState([]);
@@ -48,7 +92,12 @@ function Home() {
 							className="video-cover"
 						/>
 						<h2>{video.title}</h2>
-						<p>By: {video.user.username}</p>
+						<p>
+							By:{" "}
+							{video.user && video.user.username
+								? video.user.username
+								: "Unknown"}
+						</p>
 					</div>
 				))}
 			</div>
