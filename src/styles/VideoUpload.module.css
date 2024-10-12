@@ -1,0 +1,53 @@
+.uploadContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2rem;
+}
+
+.uploadForm {
+	background-color: white;
+	padding: 2rem;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 400px;
+}
+
+.uploadForm h2 {
+	margin-bottom: 1.5rem;
+	text-align: center;
+	color: #1877f2;
+}
+
+.uploadForm input[type="file"] {
+	margin-bottom: 1rem;
+}
+
+.uploadForm button {
+	width: 100%;
+	padding: 0.75rem;
+	background-color: #1877f2;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	font-size: 1.1rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.uploadForm button:hover {
+	background-color: #166fe5;
+}
+
+.uploadForm button:disabled {
+	background-color: #bdc3c7;
+	cursor: not-allowed;
+}
+
+.successMessage {
+	margin-top: 1rem;
+	color: #2ecc71;
+	font-weight: bold;
+}

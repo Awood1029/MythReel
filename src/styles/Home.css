@@ -1,0 +1,33 @@
+.home {
+	display: flex;
+	height: 100%;
+}
+
+.video-feed {
+	flex: 1;
+	padding: 20px;
+	overflow-y: auto;
+}
+
+.video-card {
+	margin-bottom: 20px;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.video-card img {
+	width: 100%;
+	height: auto;
+}
+
+.video-card h2 {
+	padding: 10px;
+	margin: 0;
+}
+
+.comments-section {
+	width: 15%;
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 20px;
+}
